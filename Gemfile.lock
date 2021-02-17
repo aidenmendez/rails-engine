@@ -46,6 +46,9 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     ast (2.4.2)
+    bacon (1.2.0)
+    bacon-bits (0.1.0)
+      bacon (>= 1.1.0)
     bootsnap (1.7.2)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -75,6 +78,7 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hirb (0.7.3)
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     launchy (2.5.0)
@@ -94,6 +98,9 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     minitest (5.14.3)
+    mocha (1.12.0)
+    mocha-on-bacon (0.2.3)
+      mocha (>= 0.13.0)
     msgpack (1.4.2)
     nio4r (2.5.5)
     nokogiri (1.11.1-x86_64-darwin)
@@ -206,13 +213,18 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
+  bacon (~> 1.2)
+  bacon-bits (~> 0.1.0)
   bootsnap (>= 1.1.0)
   capybara
   factory_bot_rails
   faker
   fast_jsonapi
+  hirb (~> 0.7.3)
   launchy
   listen (>= 3.0.5, < 3.2)
+  mocha (~> 1.12)
+  mocha-on-bacon (~> 0.2.3)
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.11)

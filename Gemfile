@@ -38,6 +38,11 @@ end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
+  gem 'bacon', '~> 1.2'
+  gem 'bacon-bits', '~> 0.1.0'
+  gem 'mocha', '~> 1.12'
+  gem 'mocha-on-bacon', '~> 0.2.3'
+  gem 'hirb', '~> 0.7.3'
 end
 
 group :test do
