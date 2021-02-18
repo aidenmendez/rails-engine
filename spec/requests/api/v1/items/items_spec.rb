@@ -15,8 +15,11 @@ RSpec.describe "Items", type: :request do
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(json[:data].count).to eq(3)
-        require 'pry'; binding.pry
-        expect(json[:data].first[])
+        expect(json[:data].first[:type]).to eq("item")
+        expect(json[:data].first[:attributes][:name]).to be_a(String)
+        expect(json[:data].first[:attributes][:description]).to be_a(String)
+        expect(json[:data].first[:attributes][:unit_price]).to be_a(Numeric)
+        expect(json[:data].first[:attributes][:merchant_id]).to be_an(Integer)
       end
     end
 
