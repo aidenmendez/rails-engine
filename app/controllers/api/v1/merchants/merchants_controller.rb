@@ -1,12 +1,8 @@
 
 class Api::V1::Merchants::MerchantsController < ApplicationController
   def index
-    begin
-      merchants = MerchantsFacade.get_merchants(params[:page], params[:per_page])
-      render json: MerchantSerializer.new(merchants)
-    rescue
-      render json: {"error" => {}}, status:404
-    end
+    merchants = MerchantsFacade.get_merchants(params[:page], params[:per_page])
+    render json: MerchantSerializer.new(merchants)
   end
 
   def show 
