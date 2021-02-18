@@ -21,6 +21,24 @@ class Api::V1::Items::ItemsController < ApplicationController
       render json: {"error" => {}}, status:404
     end
   end
+  
+  def update
+    begin
+      item = Item.find(params[:id])
+      if params[:item][:merchant_id]
+        merchant = Merchant.find(params[:item][:merchant_id])
+
+        if merchant.items.exclude?(item)
+          raise "error", status: 404
+        end
+      end
+
+      item.update(item_params)
+      render json: ItemSerializer.new(item), status: 200
+    rescue
+      render json: { "error" => {}}, status: 404
+    end
+  end
 
   def destroy
     begin

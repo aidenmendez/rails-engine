@@ -68,7 +68,7 @@ RSpec.describe "Items", type: :request do
       it "creates one new item" do
         merchant1 = create(:merchant)
 
-        post api_v1_items_path(params: {:item => {name: "Blah name", merchant_id: merchant1.id, unit_price: 10.01, description: "More ipsum lorem"}})
+        post api_v1_items_path(params: {:item => {name: "Beep name", merchant_id: merchant1.id, unit_price: 10.01, description: "More ipsum lorem"}})
         expect(response.status).to eq(201)
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe "Items", type: :request do
     describe "(sad path)" do
       it "returns an error if not all required parameters are present" do
         merchant1 = create(:merchant)
-        post api_v1_items_path(params: {:item => {name: "Blah name", merchant_id: merchant1.id, description: "More ipsum lorem"}})
+        post api_v1_items_path(params: {:item => {name: "Beep name", merchant_id: merchant1.id, description: "More ipsum lorem"}})
         expect(response.status).to eq(404)
       end
     end
@@ -100,6 +100,60 @@ RSpec.describe "Items", type: :request do
 
         delete api_v1_item_path(1000000)
         expect(response.status).to eq(404)
+      end
+    end
+  end
+
+  describe "UPDATE an Item" do
+    describe "(happy path)" do
+      it "updates an existing item's data" do
+        merchant = create(:merchant)
+        item = create(:item)
+
+        patch api_v1_item_path(item.id), params: {item: {name: "Beep name", unit_price: 100.50, merchant_id: merchant.id, description: "More ipsum lorem"}}
+        expect(response.status).to eq(200)
+        
+        item.reload
+
+        expect(item.name).to eq("Beep name")
+        expect(item.unit_price).to eq(100.50)
+      end
+      it "updates an existing item's data even if given partial data" do
+        merchant = create(:merchant)
+        item = create(:item)
+
+        patch api_v1_item_path(item.id), params: {item: {name: "Beep name"}}
+        expect(response.status).to eq(200)
+
+        item.reload
+
+        expect(item.name).to eq("Beep name")
+      end
+    end
+    describe "(sad path)" do
+      it "returns 404 for nonexistent item id" do
+        patch api_v1_item_path(0), params: {item: {name: "Beep name"}}
+        expect(response.status).to eq(404)
+
+        patch api_v1_item_path(1000000), params: {item: {name: "Beep name"}}
+        expect(response.status).to eq(404)
+      end
+
+      it "returns 404 for merchant id not associated with the item" do
+        merchant1 = create(:merchant)
+        merchant2 = create(:merchant)
+        item = create(:item, merchant_id: merchant1.id)
+
+        patch api_v1_item_path(item.id), params: {item: {name: "Beep name", unit_price: 100.50, merchant_id: merchant2.id, description: "More ipsum lorem"}}
+        expect(response.status).to eq(404)
+      end
+
+      it "returns 404 for a nonexistent merchant id" do
+        merchant = create(:merchant)
+        item = create(:item)
+
+        patch api_v1_item_path(item.id), params: {item: {name: "Beep name", unit_price: 100.50, merchant_id:0, description: "More ipsum lorem"}}
+        
       end
     end
   end
