@@ -32,5 +32,26 @@ RSpec.describe 'Merchants', type: :request do
       json = JSON.parse(response.body, symbolize_names: true)
       expect(json[:data].count).to eq(20)
     end
+
+    it 'can return items for a merchant' do
+      merchant1 = create(:merchant)
+      merchant2 = create(:merchant)
+
+      5.times do 
+       create(:item, merchant_id: merchant1.id)
+      end
+
+      2.times do 
+        create(:item, merchant_id: merchant2.id)
+       end
+
+      get api_v1_merchant_items_path(merchant1)
+
+      expect(response.status).to eq(200)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:data].count).to eq(5)
+    end
   end
 end
