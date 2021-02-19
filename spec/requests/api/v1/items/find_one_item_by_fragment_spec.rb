@@ -31,23 +31,39 @@ RSpec.describe 'Item Search', type: :request do
 
       it "returns an empty object if there is no match" do
         get "/api/v1/items/find?name=banana"
-
+        
         expect(response.status).to eq(200)
 
         json = JSON.parse(response.body)
-        expect(json["data"]["attributes"]["name"]).to eq("")
       end
 
       it "min_price param returns one item with a price greater than or equal to the value" do
         merchant = create(:merchant)
-        item = create(:item, name: "Oranges and Bananas", unit_price: )
-        item = create(:item, name: "Bananagrams")
-        item = create(:item, name: "Zebra Banana Man")
+        item = create(:item, name: "Oranges and Bananas", unit_price: 10)
+        item = create(:item, name: "Bananagrams", unit_price: 35)
+        item = create(:item, name: "Zebra Banana Man", unit_price: 100)
 
 
-        get "/api/v1/items/find?name=banana"
+        get "/api/v1/items/find?min_price=20"
 
         expect(response.status).to eq(200)
+        json = JSON.parse(response.body)
+
+        expect(json["data"]["attributes"]["name"]).to eq("Bananagrams")
+
+        get "/api/v1/items/find?min_price=10"
+
+        expect(response.status).to eq(200)
+        json = JSON.parse(response.body)
+
+        expect(json["data"]["attributes"]["name"]).to eq("Oranges and Bananas")
+
+        get "/api/v1/items/find?min_price=90"
+
+        expect(response.status).to eq(200)
+        json = JSON.parse(response.body)
+
+        expect(json["data"]["attributes"]["name"]).to eq("Zebra Banana Man")
       end
 
       it "max_price param returns one item with a price less than or equal to the value" do
