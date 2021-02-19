@@ -3,20 +3,60 @@ require 'rails_helper'
 RSpec.describe 'Item Search', type: :request do
   describe "Fetch One Item" do
     describe "(happy path)" do
-      it "returns a single item and a status of 200" do
+      it "name param returns a single item and a status of 200" do
         merchant = create(:merchant)
         item = create(:item, name: "Bananagrams")
 
-        # get "/api/v1/items/find_one?name=banana"
-        get api_v1_items_find_one_path(params: {"name" => "banana"})
+        get api_v1_items_find_path(params: {"name" => "banana"})
         expect(response.status).to eq(200)
 
         json = JSON.parse(response.body)
-
-        expect(json["data"]["item"]["name"]).to eq("Bananagram")
+        expect(json["data"]["attributes"]["name"]).to eq("Bananagrams")
       end
 
-      it "returns only the first matching item when there are multiple results (case-sensative alphabetical order)" do
+      it "name param returns only the first matching item when there are multiple results (case-sensative alphabetical order)" do
+        merchant = create(:merchant)
+        item = create(:item, name: "Oranges and Bananas")
+        item = create(:item, name: "Bananagrams")
+        item = create(:item, name: "Zebra Banana Man")
+
+
+        get "/api/v1/items/find?name=banana"
+
+        expect(response.status).to eq(200)
+
+        json = JSON.parse(response.body)
+        expect(json["data"]["attributes"]["name"]).to eq("Bananagrams")
+      end
+
+      it "returns an empty object if there is no match" do
+        get "/api/v1/items/find?name=banana"
+
+        expect(response.status).to eq(200)
+
+        json = JSON.parse(response.body)
+        expect(json["data"]["attributes"]["name"]).to eq("")
+      end
+
+      it "min_price param returns one item with a price greater than or equal to the value" do
+        merchant = create(:merchant)
+        item = create(:item, name: "Oranges and Bananas", unit_price: )
+        item = create(:item, name: "Bananagrams")
+        item = create(:item, name: "Zebra Banana Man")
+
+
+        get "/api/v1/items/find?name=banana"
+
+        expect(response.status).to eq(200)
+      end
+
+      it "max_price param returns one item with a price less than or equal to the value" do
+        
+      end
+    end
+
+    describe "(sad path)" do
+      it "doesn't accept a name param AND a min_price and/ or max_price param" do
 
       end
     end

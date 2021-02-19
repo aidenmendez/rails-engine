@@ -4,4 +4,10 @@ class Item < ApplicationRecord
   has_many :invoices, through: :invoice_items, dependent: :destroy
 
   validates_presence_of :name, :description, :unit_price, :merchant_id
+
+  def self.single_search(search_term)
+    where("(name) ILIKE ?", "%#{search_term}%")
+    .order("name")
+    .limit(1)
+  end
 end
