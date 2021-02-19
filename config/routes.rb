@@ -4,6 +4,10 @@ Rails.application.routes.draw do
       scope module: :items do
         get "items/find", to: "search#find"
       end
+
+      scope module: :merchants do
+        get "merchants/find_all", to: "search#find_all"
+      end
       
       resources :items, module: :items, only: [:index, :show, :create, :destroy, :update] do
         resources :merchant, only: [:index]

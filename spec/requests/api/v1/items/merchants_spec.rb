@@ -27,7 +27,7 @@ RSpec.describe "Merchants", type: :request do
         merchant = create(:merchant)
         item = create(:item)
 
-        get api_v1_item_merchant_index_path(item.id.to_s)
+        get api_v1_item_merchant_index_path("cat")
         expect(response.status).to eq(404)
       end
     end
