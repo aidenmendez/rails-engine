@@ -35,6 +35,7 @@ RSpec.describe 'Item Search', type: :request do
         expect(response.status).to eq(200)
 
         json = JSON.parse(response.body)
+        expect(json["data"]["attributes"]["name"]).to be_nil
       end
 
       it "with a min_price param it returns one item with a price greater than or equal to the value" do
@@ -84,7 +85,7 @@ RSpec.describe 'Item Search', type: :request do
 
         expect(response.status).to eq(200)
         json = JSON.parse(response.body)
-
+        
         expect(json["data"]["attributes"]["name"]).to eq("Bananagrams")
 
         get "/api/v1/items/find?max_price=120"
@@ -100,7 +101,6 @@ RSpec.describe 'Item Search', type: :request do
         item = create(:item, name: "Oranges and Bananas", unit_price: 10)
         item = create(:item, name: "Bananagrams", unit_price: 35)
         item = create(:item, name: "Zebra Horse Man", unit_price: 100)
-
 
         get "/api/v1/items/find?max_price=25&min_price=10"
 
