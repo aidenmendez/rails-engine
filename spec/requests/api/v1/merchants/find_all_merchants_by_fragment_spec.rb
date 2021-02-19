@@ -14,18 +14,47 @@ RSpec.describe "Merchant Search", type: :request do
         expect(response.status).to eq(200)
         json = JSON.parse(response.body)
 
+       
+        expect(json["data"]).to be_an(Array)
         expect(json["data"].count).to eq(3)
-        expect(json["data"]).to include(MerchantSerializer.new(merchant1))
 
-        get "/api/v1/merchants/find_all?name=ool"
+        get "/api/v1/merchants/find_all?name=incor"
 
         expect(response.status).to eq(200)
         json = JSON.parse(response.body)
 
-        expect(json.count).to eq(3)
+        expect(json["data"]).to be_an(Array)
+        expect(json["data"].count).to eq(1)
+      end
 
+      it "returns an empty array when there are no matches" do
+        merchant1 = create(:merchant, name: "The Tool Shed")
+        merchant2 = create(:merchant, name: "Cool Cats Hats")
 
+        get "/api/v1/merchants/find_all?name=ocks"
 
+        expect(response.status).to eq(200)
+        json = JSON.parse(response.body)
+
+       
+        expect(json["data"]).to be_an(Array)
+        expect(json["data"].count).to eq(0)
+      end
+    end
+
+    describe "(sad path)" do
+      it "returns an empty array when no fragment is given" do
+        merchant1 = create(:merchant, name: "The Tool Shed")
+        merchant2 = create(:merchant, name: "Cool Cats Hats")
+
+        get "/api/v1/merchants/find_all?name="
+
+        expect(response.status).to eq(200)
+        json = JSON.parse(response.body)
+
+       
+        expect(json["data"]).to be_an(Array)
+        expect(json["data"].count).to eq(0)
       end
     end
   end
