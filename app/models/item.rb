@@ -13,6 +13,19 @@ class Item < ApplicationRecord
 
   def self.min_price_search(price)
     where("unit_price >= ?", price.to_i)
+    .order(:unit_price)
+    .limit(1)
+  end
+
+  def self.max_price_search(price)
+    where("unit_price <= ?", price.to_i)
+    .order(unit_price: :DESC)
+    .limit(1)
+  end
+
+  def self.price_range_search(min_price, max_price)
+    where(:unit_price => min_price.to_i..max_price.to_i)
+    .order(:unit_price)
     .limit(1)
   end
 end
