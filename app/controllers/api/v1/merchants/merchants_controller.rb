@@ -13,4 +13,14 @@ class Api::V1::Merchants::MerchantsController < ApplicationController
       render json: {"error" => {}}, status:404
     end
   end
+
+  def most_items
+    begin
+      require 'pry'; binding.pry
+      merchants = Merchant.merchant_sold_most_items(params[:quantity])
+      render json: MerchantListSerializer.new(merchants)
+    rescue
+
+    end
+  end
 end
