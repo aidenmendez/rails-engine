@@ -15,6 +15,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![CircleCI][circleci-shield]][circleci-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -45,14 +46,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This Rails-backed JSON API was built in 6 days while I was in Mod 3 of [Turing School's](https://turing.io) Backend Engineering program.
+The bulk of this Rails-backed JSON API was built in 5 days while attending [Turing School's](https://turing.io) Backend Engineering program. This project uses [CircleCI](https://circleci.com) for continuous integration and is hosted on Heroku.
 
-Areas of exploration and learning on this project included:
+This project includes:
 
-* Expose an API
-* Use serializers to format JSON responses
-* Test API exposure with RSpec and Postman
-* Compose advanced ActiveRecord queries to analyze information stored in PostgreSQL database
+* Exposing APIs (RESTful and non-RESTful)
+* Using serializers to format JSON responses
+* Testing API exposure with RSpec and Postman
+* Composing advanced ActiveRecord queries to analyze information stored in PostgreSQL database
 * Write SQL statements without the assistance of an ORM
 * Implement json:api standards
 * Add custom error responses for invalid API requests
@@ -273,3 +274,5 @@ Aiden Mendez — [LinkedIn](https://linkedin.com/in/aidenmendez)
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/aidenmendez
+[circleci-shield]: https://circleci.com/gh/aidenmendez/rails-engine.svg?style=svg
+[circleci-url]: https://app.circleci.com/pipelines/github/aidenmendez/rails-engine
