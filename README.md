@@ -33,13 +33,16 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+Rails Engine is the backend API for a fictitious e-commerce application. The core functionality was designed around the principles of Service-Oriented Architecture. Rails engine exposes the data that powers the frontend application using predominantly RESTful endpoints.
+
 The bulk of this Rails-backed JSON API was built in 5 days while attending [Turing School's](https://turing.io) Backend Engineering program. This project uses [CircleCI](https://circleci.com) for continuous integration and is hosted on Heroku.
 
-This project includes:
+
+
+This project features:
 
 * Exposing APIs (RESTful and non-RESTful)
 * Using serializers to format JSON responses
@@ -65,6 +68,7 @@ This project includes:
 3. Setup the database. A pgdump is included in `./db` to seed the database
 
     `rails db:{create,migrate,seed}`
+    
 4. Run the RSpec test suite: `bundle exec rspec`
 5. Start your local server: `rails s`
 
