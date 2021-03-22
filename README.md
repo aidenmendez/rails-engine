@@ -113,7 +113,7 @@ Below is an example of the response body format for queries.
   ]
 }
 ```
-## ReST Endpoints
+## ReSTful Endpoints
 
 ### Get All Merchants
 
@@ -222,13 +222,6 @@ Parameter(s): `?name`, `min_price` and `max_price`.
 GET /api/v1/items/find?name=x OR ?min_price=x&max_price=y
 ```
 
-### Get Merchants with Most Revenue
-
-Required Parameter: `?quantity` is required
-
-```
-GET /api/v1/revenue/merchants?quantity=x
-```
 
 ### Get Merchants who Sold Most Items
 
@@ -238,27 +231,6 @@ Optional Parameter: `?quantity` is _not_ required for this query. Defaults to 5 
 GET /api/v1/merchants/most_items?quantity=
 ```
 
-### Get Revenue of a Single Merchant
-
-```
-GET /api/v1/revenue/merchants/:id
-```
-
-### Get Items with Most Revenue
-
-Optional Parameter: `?quantity` is _not_ required. Defaults to 10 results.
-
-```
-GET /api/v1/revenue/items?quantity=x
-```
-
-### Get Potential Revenue of Unshipped Invoices
-
-Optional Parameter: `?quantity` is _not_ required. Defaults to 10 results.
-
-```
-GET /api/v1/revenue/unshipped?quantity=x
-```
 
 <!-- CONTACT -->
 ## Contact
