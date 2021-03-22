@@ -29,6 +29,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 gem 'fast_jsonapi'
+gem 'faker'
+
 
 group :development, :test do
   gem 'pry'
@@ -51,7 +53,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'factory_bot_rails'
-  gem 'faker'
+  # gem 'faker'
 end
 
 

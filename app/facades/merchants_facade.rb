@@ -1,3 +1,4 @@
+
 class MerchantsFacade
   def self.get_merchants(page, per_page)
     page      ||= 1
