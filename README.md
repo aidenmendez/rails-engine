@@ -38,7 +38,7 @@
 
 Rails Engine is the backend API for a fictitious e-commerce application. The core functionality was designed around the principles of Service-Oriented Architecture. Rails engine exposes the data that powers the frontend application using predominantly RESTful endpoints.
 
-The bulk of this Rails-backed JSON API was built in 5 days while attending [Turing School's](https://turing.io) Backend Engineering program. This project uses [CircleCI](https://circleci.com) for continuous integration and is hosted on Heroku.
+The bulk of this Rails-backed JSON API was built in 5 days while attending [Turing School's](https://turing.io) Backend Engineering program. This project uses [CircleCI](https://circleci.com) for continuous integration and is hosted on [Heroku](https://ecommerce-rails-engine.herokuapp.com/).
 
 
 
