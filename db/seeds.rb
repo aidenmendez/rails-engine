@@ -31,8 +31,8 @@ end
 end
 
 2000.times do
-  merchant = Merchant.order('RANDOM()').first.id
-  
+  merchant = Merchant.order('RANDOM()').first
+
   inv = Invoice.create!(
     customer_id: Customer.order('RANDOM()').first.id,
     merchant_id: merchant.id,
@@ -43,8 +43,7 @@ end
     invoice_id: inv.id,
     item_id: merchant.items.order('RANDOM()').first.id,
     quantity: rand(1...1000),
-    unit_price: rand(1.01...99999.99).round(2),
-    merchant_id: merchant.id
+    unit_price: rand(1.01...99999.99).round(2)
   )
 
   Purchase.create!(
