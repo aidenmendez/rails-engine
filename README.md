@@ -268,6 +268,6 @@ Aiden Mendez — [LinkedIn](https://linkedin.com/in/aidenmendez)
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/aidenmendez
+[linkedin-url]: https://linkedin.com/in/aiden-mendez
 [circleci-shield]: https://circleci.com/gh/aidenmendez/rails-engine.svg?style=svg
 [circleci-url]: https://app.circleci.com/pipelines/github/aidenmendez/rails-engine
